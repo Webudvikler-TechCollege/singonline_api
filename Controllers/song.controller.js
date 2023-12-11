@@ -7,112 +7,60 @@ import Artist from "../Models/artist.model.js";
 Song.belongsTo(Artist);
 Song.belongsToMany(Album, { through: AlbumSongRel });
 Album.belongsToMany(Song, { through: AlbumSongRel });
-
 export default class SongController {
 
 	/**
-	 * List Metode
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Get all records
+	 * @returns array
 	 */
-	list = async (req, res) => {
+	get_all = async () => {
 		const result = await Song.findAll({
-			attributes: ['title'],
-			include: {
-				model: Artist,
-				attributes: ['name']
-			}
+			attributes: ['id','title']
 		});
-        res.status(200).send(result);
+        return result;
 	}
 
 	/**
-	 * Detail Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Get single record by primary key
+	 * @param {number} id 
+	 * @returns object
 	 */
-	details = async (req, res) => {
-		const { id } = req.params;
+	get_single = async id => {
 
-		const result = await Song.findAll({
-			attributes: ['title'],
- 			where: { id: id },
+		const result = await Song.findByPk(id, {
 			include: [{
 				model: Artist,
-				attributes: ['name']
 			},{
 				model: Album,
-                attributes: ['title']
 			}]
 		});
-        res.status(200).send(result);
+		return result;
 	}	
 
 	/**
-	 * Create Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Create new record
+	 * @param {object} postdata Object with form data
+	 * @returns object
 	 */
-	create = async (req, res) => {
-		const { title, content, artist_id, is_active } = req.body;
-
-		if(title && content && artist_id && is_active) {
-			const result = await Song.create(req.body);
-			res.status(200).send({
-				message: 'Record created',
-				new_id: result.id
-			})
-		} else {
-			res.status(403).send({
-				message: 'Wrong parameter values'
-			})
-		}
+	create = async postdata => {
+		return await Song.create(postdata);
 	}
 
 	/**
-	 * Update Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Update record
+	 * @param {object} postdata Object with form data
+	 * @returns boolean
 	 */
-	update = async (req, res) => {
-		console.log(req.body);
-		const { id, title, content, artist_id, is_active } = req.body;
-
-		if(id && title && content && artist_id && is_active) {
-			const result = await Song.update(req.body, {
-				where: { id: id }
-			});
-			res.status(200).send({
-				message: 'Record updated'
-			})
-		} else {
-			res.status(403).send({
-				message: 'Wrong parameter values'
-			})
-		}
+	update = async postdata => {
+		return await Song.update(postdata, { where: { id: postdata.id }});
 	}
 
 	/**
-	 * Delete Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Delete record
+	 * @param {number} id 
+	 * @returns boolean
 	 */
-	delete = async (req, res) => {
-		const { id } = req.params;
-
-		if(id) {
-			const result = await Song.destroy({
-				where: { id: id }
-			});
-			res.status(200).send({
-				message: 'Record deleted'
-			})
-		} else {
-			res.status(403).send({
-				message: 'Wrong parameter values'
-			})
-		}
+	delete = async id => {
+		return await Song.destroy({ where: { id: id }});
 	}
-
-
 }

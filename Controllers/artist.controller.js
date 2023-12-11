@@ -9,28 +9,24 @@ Artist.hasMany(Album);
 export default class ArtistController {
 
 	/**
-	 * List Metode
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Get all records
+	 * @returns array
 	 */
-	list = async (req, res) => {
+	get_all = async () => {
 		const result = await Artist.findAll({
-			attributes: ['name']
+			attributes: ['id','name']
 		});
-        res.status(200).send(result);
+        return result;
 	}
 
 	/**
-	 * Detail Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Get single record by primary key
+	 * @param {number} id 
+	 * @returns object
 	 */
-	details = async (req, res) => {
-		const { id } = req.params;
+	get_single = async id => {
 
-		const result = await Artist.findAll({
-			attributes: ['name', 'description'],
- 			where: { id: id },
+		const result = await Artist.findByPk(id, {
 			include: [{
 				model: Song,
 				attributes: ['title']
@@ -39,73 +35,33 @@ export default class ArtistController {
                 attributes: ['title']
 			}]
 		});
-        res.status(200).send(result);
+		return result;
 	}	
 
 	/**
-	 * Create Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Create new record
+	 * @param {object} postdata Object with form data
+	 * @returns object
 	 */
-	create = async (req, res) => {
-		const { name, description } = req.body;
-
-		if(name && description) {
-			const result = await Artist.create(req.body);
-			res.status(200).send({
-				message: 'Record created',
-				new_id: result.id
-			})
-		} else {
-			res.status(403).send({
-				message: 'Wrong parameter values'
-			})
-		}
+	create = async postdata => {
+		return await Artist.create(postdata);
 	}
 
 	/**
-	 * Update Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Update record
+	 * @param {object} postdata Object with form data
+	 * @returns boolean
 	 */
-	update = async (req, res) => {
-		const { id, name, description } = req.body;
-
-		if(id && name) {
-			const result = await Artist.update(req.body, {
-				where: { id: id }
-			});
-			res.status(200).send({
-				message: 'Record updated'
-			})
-		} else {
-			res.status(403).send({
-				message: 'Wrong parameter values'
-			})
-		}
+	update = async postdata => {
+		return await Artist.update(postdata, { where: { id: postdata.id }});
 	}
 
 	/**
-	 * Delete Method
-	 * @param {*} req 
-	 * @param {*} res 
+	 * Delete record
+	 * @param {number} id 
+	 * @returns boolean
 	 */
-	delete = async (req, res) => {
-		const { id } = req.params;
-
-		if(id) {
-			const result = await Artist.destroy({
-				where: { id: id }
-			});
-			res.status(200).send({
-				message: 'Record deleted'
-			})
-		} else {
-			res.status(403).send({
-				message: 'Wrong parameter values'
-			})
-		}
+	delete = async id => {
+		return await Artist.destroy({ where: { id: id }});
 	}
-
-
 }
