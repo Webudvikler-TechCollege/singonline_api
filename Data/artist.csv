@@ -1,6 +1,6 @@
-"id","name","description",
-1,"Bob Dylan","<p>Bob Dylan er en amerikansk singer-songwriter, poet og nobelprisvinder kendt for sin indflydelse på folkemusik og hans ikoniske stemme.</p>"
-2,"Depeche Mode","<p>Depeche Mode er et britisk synthpopband, der har markeret sig med deres elektroniske lyd og dystre, følelsesladede tekster.</p>"
-3,"U2","<p>U2 er et irsk rockband dannet i Dublin i 1976. Bandet består af fire medlemmer: Bono (vokal og guitar), The Edge (guitar, keyboard og vokal), Adam Clayton (bas) og Larry Mullen Jr. (trommer og percussion). U2 er kendt for deres karakteristiske lyd, politiske engagement og spektakulære liveoptrædener. Nogle af U2s mest kendte album inkluderer <em>The Joshua Tree</em>, <em>Achtung Baby</em>, <em>War</em> og <em>Rattle and Hum</em>. Bandet har vundet adskillige Grammy Awards, og deres indflydelse på udviklingen af rockmusik er betydelig. Bono, U2s frontfigur, er også kendt for sit aktivistarbejde inden for sociale og politiske emner og har været talsmand for sager som menneskerettigheder og bekæmpelse af fattigdom.</p>"
-4,"Peter Gabriel","<p>Peter Gabriel er en britisk musiker, sanger, sangskriver og tidligere frontmand for det progressive rockband Genesis.</p>"
-5,"Police","<p>Police er et britisk rockband, der blev dannet i 1977 og bestod af medlemmerne Sting, Andy Summers og Stewart Copeland. De er kendt for deres karakteristiske lyd, der fusionerer rock, punk og new wave, samt hits som Message in a Bottle og Every Breath You Take.</p>"
+"id","name","description","image"
+1,"Bob Dylan","Bob Dylan er en amerikansk singer-songwriter, poet og nobelprisvinder kendt for sin indflydelse på folkemusik og hans ikoniske stemme.","bob-dylan.jpg"
+2,"Depeche Mode","Depeche Mode er et britisk synthpopband, der har markeret sig med deres elektroniske lyd og dystre, følelsesladede tekster.","depeche-mode.jpg"
+3,"U2","U2 er et irsk rockband dannet i Dublin i 1976 og kendt for deres karakteristiske lyd, politiske engagement og spektakulære liveoptrædener.","u2.jpg"
+4,"Peter Gabriel","Peter Gabriel er en britisk musiker, sanger, sangskriver og tidligere frontmand for det progressive rockband Genesis.","peter-gabriel.jpg"
+5,"Police","Police er et britisk rockband, der blev dannet i 1977 og kendt for deres karakteristiske lyd, der fusionerer rock, reggae, punk og new wave.</p>","the-police.jpg"

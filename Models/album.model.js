@@ -20,6 +20,10 @@ const Album = sequelize.define("album", {
         type: DataTypes.TEXT,
         allowNull: false
     },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     release_date: {
         type: DataTypes.DATE,
         allowNull: false

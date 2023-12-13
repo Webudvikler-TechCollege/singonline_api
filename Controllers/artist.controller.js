@@ -14,7 +14,7 @@ export default class ArtistController {
 	 */
 	get_all = async () => {
 		const result = await Artist.findAll({
-			attributes: ['id','name']
+			attributes: ['id','name','image']
 		});
         return result;
 	}

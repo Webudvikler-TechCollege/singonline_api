@@ -1,7 +1,10 @@
+import dotenv from 'dotenv'
 import Artist from "../Models/artist.model.js";
 import Album from "../Models/album.model.js";
 import Song from "../Models/song.model.js";
 import AlbumSongRel from "../Models/album_song_rel.model.js";
+import { Sequelize } from 'sequelize';
+dotenv.config()
 
 // Relations 
 Album.belongsToMany(Song, { through: AlbumSongRel });
@@ -15,7 +18,15 @@ export default class AlbumController {
 	 */
 	get_all = async () => {
 		const result = await Album.findAll({
-			attributes: ['id','name']
+			attributes: [
+				'id',
+				'title',
+				[Sequelize.fn(
+					'CONCAT', 
+					`http://localhost:${process.env.PORT}/Assets/images/albums/`, 
+					Sequelize.col('image')
+				),'image']
+			]
 		});
         return result;
 	}
