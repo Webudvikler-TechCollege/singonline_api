@@ -11,7 +11,7 @@ import { dataController } from "./controllers/dataController.js";
 const app = express()
 
 const allowedOrigins = [
-  'https://singonline2025.netlify.app',
+  'https://singonline9520.netlify.app',
   'http://localhost:5173'
 ]
 
