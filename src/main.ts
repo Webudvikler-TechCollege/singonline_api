@@ -8,8 +8,6 @@ import { userController } from "./controllers/userController.js";
 import { authController } from "./controllers/authController.js";
 import { dataController } from "./controllers/dataController.js";
 
-const app = express()
-
 const allowedOrigins = [
   'https://singonline9520.netlify.app',
   'http://localhost:5173'
@@ -37,6 +35,8 @@ const corsOptions: CorsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }
+const app = express()
+
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); 
 
@@ -47,7 +47,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 */
-
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
