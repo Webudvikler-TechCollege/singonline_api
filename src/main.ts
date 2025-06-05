@@ -22,7 +22,6 @@ interface CorsOptions {
   credentials: boolean;
 }
 
-/*
 const corsOptions: CorsOptions = {
   origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void): void {
     // Tillad også Postman og lokale requests uden origin
@@ -31,7 +30,7 @@ const corsOptions: CorsOptions = {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true)
     } else {
-      callback(new Error('CORS-fejl: Origin ikke tilladt'))
+      callback(new Error(`CORS-fejl: Origin ikke tilladt: ${origin}`), false);
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
@@ -40,12 +39,14 @@ const corsOptions: CorsOptions = {
 }
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); 
-*/
+
+/*
 app.use(cors({
-  origin: '*', // 🚨 Kun til test
+  origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+*/
 
 
 app.use(express.urlencoded({ extended: true }))
