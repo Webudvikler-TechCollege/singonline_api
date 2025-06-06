@@ -1,17 +1,33 @@
 import "reflect-metadata";
+import cors from 'cors';
 import express from 'express';
 import { songController } from "./controllers/songController.js";
-import { artistController } from "./controllers/artistController.js";
-import { userController } from "./controllers/userController.js";
-import { authController } from "./controllers/authController.js";
-import { dataController } from "./controllers/dataController.js";
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://singonline9520.netlify.app'
+];
 const app = express();
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error(`CORS-fejl: Origin ikke tilladt: ${origin}`));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.get("/", (req, res) => {
-    res.send('Sequelize Example');
+    res.json({ 'message': 'Sequelize Example' });
 });
-app.use(dataController, songController, artistController, userController, authController);
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+app.use(songController);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
