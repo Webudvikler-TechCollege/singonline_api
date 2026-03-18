@@ -2,6 +2,7 @@ import "reflect-metadata";
 import cors from 'cors';
 import express from 'express';
 import { songController } from "./controllers/songController.js";
+import { authController } from "./controllers/authController.js";
 const allowedOrigins = [
     'http://localhost:5173',
     'https://singonline9520.netlify.app'
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
     res.json({ 'message': 'Sequelize Example' });
 });
 app.use(songController);
+app.use(authController);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

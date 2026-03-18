@@ -10,6 +10,7 @@ const url:string = 'songs';
 songController.get(`/${url}`, async (req: Request, res: Response) => {
     try {
         const songs = await Song.findAll({
+            
             attributes: ['id', 'title', 'artist_id', 'createdAt'],
             include: {
                 model: Artist,
